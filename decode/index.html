@@ -17,8 +17,7 @@
 		<script type="text/javascript">
 			$(function(){
 
-				var convert = function(){
-					var t = $("#secret").val();
+				var convert = function( t, shift ){
 					var s = "";
 					for (var i = 0; i < t.length; ++i) {
 
@@ -26,29 +25,38 @@
 
 						if( t.charAt(i).match(/[a-z]/i) ) {
 
-							// var n = t.charCodeAt(i)+3;
-							// if( n>90 && n < 97 || n > 122) {
-							// 	n -= 26;
-							// }
-							var n = t.charCodeAt(i)-3;
-							if( n<65 || (n > 90 && n<97) ) {
+							var n = t.charCodeAt(i)+shift;
+							if( shift<0 && ( n<65 || (n > 90 && n<97) ) ) {
 								n += 26;
+							}
+							if( shift>0 && ( (n>90 && n < 97) || n > 122 ) ) {
+								n -= 26;
 							}
 
 						}
 						s += String.fromCharCode( n );
 					}
-					$("#answer").text( s );
+					return s;
 				}
+				var decode = function() {
+					$("#answer").val( convert( $("#secret").val(), -3 ) );
+				};
+				var encode = function() {
+					$("#secret").val( convert( $("#answer").val(), 3 ) );
+				};
 
 				if( window.location.search.indexOf("?s=")==0 ) {
 
 					$("#secret").val( decodeURIComponent( window.location.search.substring(3) ) );
-					convert();
+					decode();
+					
 				}
 
 				$("#secret").keyup(function(){
-					convert();
+					decode();
+				});
+				$("#answer").keyup(function(){
+					encode();
 				});
 			})
 		</script>
@@ -68,12 +76,12 @@
 
 						<form>
 							<div class="form-group">
-								<label for="secret">Secret</label>
-								<input type="text" class="form-control" id="secret" placeholder="put your secret here">
+								<label for="secret">Cipher</label>
+								<input type="text" class="form-control" id="secret" placeholder="secret message">
 							</div>
 							<div class="form-group">
 								<label for="answer">Truth</label>
-								<p id="answer" class="form-text"></p>
+								<input type="text" class="form-control" id="answer" placeholder="message">
 							</div>
 						</form>
 					</div>
