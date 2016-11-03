@@ -17,8 +17,8 @@
 		<script type="text/javascript">
 			$(function(){
 
-				$("#secret").keyup(function(){
-					var t = $(this).val();
+				var convert = function(){
+					var t = $("#secret").val();
 					var s = "";
 					for (var i = 0; i < t.length; ++i) {
 
@@ -39,6 +39,16 @@
 						s += String.fromCharCode( n );
 					}
 					$("#answer").text( s );
+				}
+
+				if( window.location.search.indexOf("?s=")==0 ) {
+
+					$("#secret").val( window.location.search.substring(3) );
+					convert();
+				}
+
+				$("#secret").keyup(function(){
+					convert();
 				});
 			})
 		</script>
