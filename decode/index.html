@@ -43,7 +43,7 @@
 
 				if( window.location.search.indexOf("?s=")==0 ) {
 
-					$("#secret").val( window.location.search.substring(3) );
+					$("#secret").val( decodeURIComponent( window.location.search.substring(3) ) );
 					convert();
 				}
 
