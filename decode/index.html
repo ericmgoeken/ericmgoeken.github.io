@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>Secret</title>
+
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Bootstrap Core CSS -->
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+		<script type="text/javascript">
+			$(function(){
+
+				$("#secret").keyup(function(){
+					var t = $(this).val();
+					var s = "";
+					for (var i = 0; i < t.length; ++i) {
+
+						var n = t.charCodeAt(i);
+
+						if( t.charAt(i).match(/[a-z]/i) ) {
+
+							// var n = t.charCodeAt(i)+3;
+							// if( n>90 && n < 97 || n > 122) {
+							// 	n -= 26;
+							// }
+							var n = t.charCodeAt(i)-3;
+							if( n<65 || (n > 90 && n<97) ) {
+								n += 26;
+							}
+
+						}
+						s += String.fromCharCode( n );
+					}
+					$("#answer").text( s );
+				});
+			})
+		</script>
+
+</head>
+<body>
+
+
+	<div id="wrapper">
+		<div id="page-wrapper">
+
+			<div class="container-fluid">
+
+				<!-- Page Heading -->
+				<div class="row">
+					<div class="col-lg-12">
+
+						<form>
+							<div class="form-group">
+								<label for="secret">Secret</label>
+								<input type="text" class="form-control" id="secret" placeholder="put your secret here">
+							</div>
+							<div class="form-group">
+								<label for="answer">Truth</label>
+								<p id="answer" class="form-text"></p>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>
