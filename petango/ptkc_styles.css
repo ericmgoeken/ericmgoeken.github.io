@@ -10,12 +10,21 @@ html, body, .list-body, #tblSearchResults, #tblSearchResults tbody {
 }
 body { 
 	padding: 5px;
+	font-family: sans-serif;
+}
+
+.list-body {
+    display: inline-block;
+	margin-bottom: 20px;
 }
 #tblSearchResults, #tblSearchResults tbody, #tblSearchResults tr, #tblSearchResults td {
 	display: block;
 	margin:0;
 	padding:0;
 
+}
+#tblSearchResults {
+	margin-bottom: 20px;	
 }
 #tblSearchResults tr {
 	float: left;
@@ -84,7 +93,6 @@ body {
 
 .list-animal-info-block {
 	min-height: 150px;
-	font-family: sans-serif;
 	padding: 5px;
 	position: relative;
 }
@@ -133,8 +141,143 @@ body {
 }
 
 
-#petango_ad {
-	margin-top: 40px;
+
+
+
+
+
+/* DETAIL PAGE */
+
+
+.print_btn_container {
+	display:none;
+}
+
+#DefaultLayoutDiv > table:nth-child(1) td {
+	vertical-align: top;
+}
+
+#BackAnchor,#BackAnchor:visited {
+	color: #2196F3;
+	text-decoration: none;
+	font-family: sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+}
+#BackAnchor img {
+	display: none;
+}
+#BackAnchor::before {
+	content: "< Back";
+}
+
+
+.detail-animal-name {
+	font-size: 40px;
+	text-align:center;
+}
+.detail-animal-name #lbName {
+	font-weight: bold;
+}
+
+
+.detail-table {
+	margin: 10px;
+}
+@media screen and ( min-width: 576px ) {
+	.detail-table {
+		padding-left: 20px;
+		margin-top: 60px;
+	}
+}
+
+
+@media screen and ( min-width: 576px ) {
+
+}
+
+.detail-label {
+	vertical-align: top;
+}
+.detail-value {
+	margin-left: 4px;
 	display: inline-block;
+}
+
+
+#DefaultLayoutDiv > table:nth-child(2) > tbody > tr:nth-child(2) > td {
+	width: 100% !important;
+	display: block;
+	float: left;
+}
+
+@media screen and ( min-width: 576px ) {
+
+	#DefaultLayoutDiv table:nth-child(2) > tbody > tr:nth-child(2) > td:first-child {
+		max-width: 420px;
+	}
+
+	#DefaultLayoutDiv table:nth-child(2) > tbody > tr:nth-child(2) > td {
+		width: 50% !important;
+	}
+}
+
+#DefaultLayoutDiv > table {
 	width: 100%;
+}
+
+#DefaultLayoutDiv table:nth-child(2) > tbody > tr:nth-child(2) > td { display: flex; flex-direction: column; }
+.detail-animal-photo { order: 2; }
+.detail-photo-links { order: 1; }
+
+.detail-animal-photo {
+	width: 100%;
+}
+
+
+.detail-photo-links {
+	color:gray;
+	font-size: 0;
+	margin: 10px;
+}
+.detail-photo-links::before{
+	content:"Photo: ";
+	font-size: 20px;
+	color: black;
+}
+.detail-photo-links br {
+	display:none;
+}
+.detail-photo-links a {
+	display:none;
+}
+.detail-photo-links a, .detail-photo-links a:active, .detail-photo-links a:visited {
+	color: #2196F3;
+	border: 2px solid #2196F3;
+}
+.detail-photo-links a[href*="/"] {
+	font-size: 35px;
+	display:inline;
+	text-decoration: none;
+	padding: 0 4px;
+	border-radius: 5px;
+	margin: 0 5px;
+}
+
+
+.detail-animal-desc {
+	margin: 10px;
+}
+
+
+
+/* Clear out bottom colors */
+img[name*="Animal_"] {
+	display:none;
+}
+td[bgcolor="#eceff6"] {
+	background: none;
+}
+#tbl24PWtrial img {
+	max-width: 100%;
 }
